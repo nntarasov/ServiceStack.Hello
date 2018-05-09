@@ -10,7 +10,6 @@ namespace ServiceStack.Hello
     /// </summary>    
     public class Hello
     {
-        public string Name { get; set; }
     }
 
     /// <summary>
@@ -28,9 +27,7 @@ namespace ServiceStack.Hello
     {
         public object Any(Hello request)
         {
-            //Looks strange when the name is null so we replace with a generic name.
-            var name = request.Name ?? "John Doe";
-            return new HelloResponse { Result = "Hello, " + name };
+			return new HelloResponse { Result = DateTime.Now.ToString() };
         }
     }
 
@@ -56,8 +53,7 @@ namespace ServiceStack.Hello
                 //http://localhost/ServiceStack.Hello/servicestack/hello or http://localhost/ServiceStack.Hello/servicestack/hello/John%20Doe
                 //You can change /servicestack/ to a custom path in the web.config.
                 Routes
-                  .Add<Hello>("/hello")
-                  .Add<Hello>("/hello/{Name}");
+					.Add<Hello>("/hello");
             }
         }
 
